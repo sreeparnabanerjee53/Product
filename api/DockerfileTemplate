@@ -3,13 +3,19 @@ FROM openjdk:8
 ENV SERVER_PORT=9000 \
     ADMIN_PORT=9001
 
+RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt
+
+
 VOLUME /tmp
 ADD maven/${fileName}.jar ${fileName}.jar
 ADD config.yml config.yml
+ADD entryPoint.sh /entryPoint.sh
+RUN chmod +x /entryPoint.sh
+ADD mysql.sql /mysql.sql
 RUN sh -c 'touch ${fileName}'
 
-ENTRYPOINT ["java", "-jar", "/${fileName}.jar"]
-CMD ["server", "/config.yml"]
+ENTRYPOINT [ "/entryPoint.sh" ]
+CMD ["java", "-jar", "/${fileName}.jar" , "server", "/config.yml"]
 
 EXPOSE ${'$'}SERVER_PORT
 EXPOSE ${'$'}ADMIN_PORT

@@ -19,3 +19,19 @@ dockerFile.withWriter('UTF-8') { writer ->
 configurationFile.withWriter('UTF-8') { writer ->
     writer.write(configuration)
 }
+
+
+File entryPoint = new File("${project.basedir}/target/dockerfile/entryPoint.sh".toString())
+entryPoint.withWriter('UTF-8') { writer ->
+    String src = new File("${project.basedir}/src/main/resources/entryPoint.sh".toString()).getText()
+    writer.write(src)
+}
+
+File sql = new File("${project.basedir}/target/dockerfile/mysql.sql".toString())
+sql.withWriter('UTF-8') { writer ->
+    String src = new File("${project.basedir}/src/main/resources/mysql.sql".toString()).getText()
+    writer.write(src)
+}
+
+
+

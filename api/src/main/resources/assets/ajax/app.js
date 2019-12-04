@@ -10,7 +10,7 @@ var reloadData = function () {
 
             for (var key in data) {
                 html += '<tr>'
-                html += '<td class="column1">' + data[key].name  + '</td>' + '<td class="column1">' + data[key].current_price + '</td>';
+                html += '<td class="column1">' + data[key].name  + '</td>' + '<td class="column1">' + data[key].currentPrice + '</td>';
                 html += '</tr>'
             }
             html += '</tbody></table>';

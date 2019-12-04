@@ -36,7 +36,7 @@ database:
   properties:
    charSet: UTF-8
    hibernate.show_sql: false
-   hibernate.hbm2ddl.auto: create
+   hibernate.hbm2ddl.auto: validate
    hibernate.session.events.log: false
    hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
