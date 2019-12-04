@@ -8,6 +8,8 @@ import com.google.inject.Injector;
 import com.product.demo.utils.ObjectMapperUtil;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.hibernate.SessionFactoryFactory;
@@ -56,6 +58,11 @@ public class ProductApplication extends Application<ProductConfiguration> {
         });
         bootstrap.addBundle(new AssetsBundle("/assets/ajax", "/products", null, "ajax"));
         bootstrap.addBundle(hibernate);
+        bootstrap.setConfigurationSourceProvider(
+                new SubstitutingSourceProvider(
+                        bootstrap.getConfigurationSourceProvider(),
+                        new EnvironmentVariableSubstitutor(false))
+        );
         super.initialize(bootstrap);
     }
 

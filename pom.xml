@@ -18,6 +18,8 @@
         <junit>1.16.2</junit>
         <google.guice.version>4.2.2</google.guice.version>
         <mockito.version>1.10.19</mockito.version>
+        <docker.image.prefix>product</docker.image.prefix>
+        <docker.image.name>product-docker</docker.image.name>
     </properties>
 
     <dependencies>

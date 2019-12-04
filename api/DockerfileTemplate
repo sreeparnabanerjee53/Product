@@ -1,0 +1,15 @@
+FROM openjdk:8
+
+ENV SERVER_PORT=9000 \
+    ADMIN_PORT=9001
+
+VOLUME /tmp
+ADD maven/${fileName}.jar ${fileName}.jar
+ADD config.yml config.yml
+RUN sh -c 'touch ${fileName}'
+
+ENTRYPOINT ["java", "-jar", "/${fileName}.jar"]
+CMD ["server", "/config.yml"]
+
+EXPOSE ${'$'}SERVER_PORT
+EXPOSE ${'$'}ADMIN_PORT
